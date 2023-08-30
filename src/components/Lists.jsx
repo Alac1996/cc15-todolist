@@ -1,3 +1,4 @@
+import ListItem from "./ListItem";
 /*
 
 props = {
@@ -9,8 +10,6 @@ props = {
     }>
 }
 */
-
-import ListItem from "./ListItem";
 
 function Lists(props) {
   return (

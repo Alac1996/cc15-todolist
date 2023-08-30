@@ -299,6 +299,17 @@ Build Code
 -npm run build
 -bundle code เหมือนกับตอน dev + Optimization(เช่น remove comment, minify == ลด white)
 
+    <ul className="list">
+                {/* {generalLists.map((obj_1) => (
+                  <ListItem
+                    key={obj_1.id}
+                    text={obj_1.text}
+                    icon={obj_1.icon}
+                    active={obj_1.active}
+                  />
+                ))} */}
+
+
             <ul className="list">
                 {/* {projectLists.map((obj_2) => (
                   <ListItem
@@ -316,3 +327,9 @@ Build Code
                 {/* <ListItem text="Project-A" icon={<FaInbox />} active={true} />
                 <ListItem text="Project-B" icon={<FaInbox />} active={false} /> */}
               </ul>
+
+<!--
+   <div className="header">
+            <h1 className="header__text">Inbox</h1>
+            <span className="header__date">Wed 30 Aug</span>
+          </div> -->

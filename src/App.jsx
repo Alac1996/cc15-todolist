@@ -9,6 +9,9 @@ import {
 } from "react-icons/fa";
 import ListItem from "./components/ListItem";
 import Lists from "./components/Lists";
+import TodoHeader from "./components/Todo/TodoHeader";
+import TodoCreate from "./components/Todo/TodoCreate";
+import TodoLists from "./components/Todo/TodoLists";
 
 function App() {
   // <ListItem text="Inbox" ico={<FaInbox/>} active={true}/>
@@ -74,7 +77,13 @@ function App() {
           </section>
         </aside>
       </div>
-      <div className="todo__content">TodoContent</div>
+      <div className="todo__content">
+        <main className="todo__container">
+          <TodoHeader />
+          <TodoCreate />
+          <TodoLists />
+        </main>
+      </div>
     </div>
   );
 }
