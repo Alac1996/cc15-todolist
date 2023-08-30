@@ -1,12 +1,12 @@
 import "./ListItem.scss";
-import { FaInbox } from "react-icons/fa";
+// import { FaInbox } from "react-icons/fa";
 
 function ListItem(props) {
   console.log(props);
   return (
-    <li className="List_item">
+    <li className="list__item">
       {props.icon}
-      <p className="List__item__text">{props.text}</p>
+      <p className="list__item__text">{props.text}</p>
     </li>
   );
 }

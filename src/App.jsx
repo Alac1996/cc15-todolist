@@ -33,15 +33,15 @@ function App() {
               </li> */}
               <ListItem
                 text="Inbox"
-                icon={<FaInbox className="List_item_icon" />}
+                icon={<FaInbox className="list_item_icon" />}
               />
               <ListItem
                 text="Today"
-                icon={<FaCalendar className="List_item_icon" />}
+                icon={<FaCalendar className="list_item_icon" />}
               />
               <ListItem
                 text="Next 7 days"
-                icon={<FaCalendarAlt className="List_item_icon" />}
+                icon={<FaCalendarAlt className="list_item_icon" />}
               />
             </ul>
           </section>
