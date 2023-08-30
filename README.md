@@ -298,3 +298,21 @@ Production
 Build Code
 -npm run build
 -bundle code เหมือนกับตอน dev + Optimization(เช่น remove comment, minify == ลด white)
+
+            <ul className="list">
+                {/* {projectLists.map((obj_2) => (
+                  <ListItem
+                    key={obj_2.id}
+                    text={obj_2.text}
+                    icon={obj_2.icon}
+                    active={obj_2.active}
+                  />
+                ))} */}
+                {projectLists.map((obj) => {
+                  obj.key = obj.id;
+                  delete obj.id;
+                  return <ListItem {...obj} />;
+                })}
+                {/* <ListItem text="Project-A" icon={<FaInbox />} active={true} />
+                <ListItem text="Project-B" icon={<FaInbox />} active={false} /> */}
+              </ul>

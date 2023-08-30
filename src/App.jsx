@@ -8,8 +8,47 @@ import {
   FaChevronDown,
 } from "react-icons/fa";
 import ListItem from "./components/ListItem";
+import Lists from "./components/Lists";
 
 function App() {
+  // <ListItem text="Inbox" ico={<FaInbox/>} active={true}/>
+  const generalLists = [
+    {
+      id: 1,
+      text: "Inbox",
+      active: true,
+      icon: <FaInbox />,
+    },
+    {
+      id: 2,
+      text: "Today",
+      active: false,
+      icon: <FaCalendar />,
+    },
+    {
+      id: 3,
+      text: "Next 7 Days",
+      active: false,
+      icon: <FaCalendarAlt />,
+    },
+  ];
+
+  const projectLists = [
+    {
+      id: 1,
+      text: "Project-A",
+      icon: <FaInbox />,
+      active: true,
+    },
+    {
+      id: 2,
+      text: "Project-B",
+      icon: <FaInbox />,
+      active: false,
+    },
+  ];
+
+  // ObjectDetail => <ListItem ...ObjectDetail/>
   return (
     <div className="todo">
       <div className="todo__header">
@@ -18,32 +57,20 @@ function App() {
       <div className="todo__sidebar">
         <aside className="Sidebar">
           <section className="sidebar__category">
-            <ul className="list">
-              {/* <li className="list__item">
-                <FaInbox className="list__icon__list" />
-                <p className="list__item__text">Inbox</p>
-              </li>
-              <li className="list__item">
-                <FaCalendar className="list__icon__list" />
-                <p className="list__item__text">Today</p>
-              </li>
-              <li className="list__item">
-                <FaCalendarAlt className="list__icon__list" />
-                <p className="list__item__text">Next 7 days</p>
-              </li> */}
-              <ListItem
-                text="Inbox"
-                icon={<FaInbox className="list_item_icon" />}
-              />
-              <ListItem
-                text="Today"
-                icon={<FaCalendar className="list_item_icon" />}
-              />
-              <ListItem
-                text="Next 7 days"
-                icon={<FaCalendarAlt className="list_item_icon" />}
-              />
-            </ul>
+            <Lists data={generalLists} />
+          </section>
+          <section className="sidebar__category">
+            <div className="accordion">
+              {/* Toggle */}
+              <div className="accordion__toggle">
+                <li className="accordion__item">
+                  <FaChevronDown className="accordion__item__icon accordion__item__active" />
+                  <p className="accordion__item__text">Projects</p>
+                </li>
+              </div>
+              {/* Lists */}
+              <Lists data={projectLists} />
+            </div>
           </section>
         </aside>
       </div>
@@ -53,3 +80,12 @@ function App() {
 }
 
 export default App;
+
+/*
+Challenge : Refactor
+-ให้ 2 section render UI ที่...
+- Option A (2/5): render ต่างกัน <Lists/> กับ <Accordion/> : 
+- Option B (4/5): render UI เดียวกัน เช่น <Lists isAccordion/>
+- Option C (5/5): render UI <Lists/> ภายใต้ <Accordion> <Lists/> </Accordion>
+// ใช้ props.children
+*/
