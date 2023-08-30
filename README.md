@@ -214,3 +214,87 @@ import styles from "./Header.module.scss";
 
 // implement styles กับ className
 ```
+
+#### 5.1.2 : Search
+
+- สร้างไฟล์ Search.jsx
+- สร้างไฟล์ Search.module.scss
+
+```jsx
+import { FaSearch } from "react-icons/fa";
+<div className="search">
+  <span className="search__icon">
+    <FaSearch />
+  </span>
+  <input type="text" className="search__input" placeholder="search" />
+</div>;
+```
+
+```scss
+// import global.scss
+.search {
+  position: relative;
+  border-radius: 4px;
+
+  // magnify-icon
+  &__icon {
+    // position
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    // decorate
+    font-size: 1.6rem;
+    font-weight: 200;
+    color: grey;
+
+    // control-child
+    display: flex;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 5px;
+    padding-left: 30px;
+    border-radius: 5px;
+    border: 1px solid $grey-light;
+    font-size: 1.6rem;
+    outline: none;
+    color: $grey-dark;
+  }
+}
+```
+
+Project Setup
+
+- npx create-react-app <project-name>
+  -cd <project-name>
+
+Project Start/Stop
+-pwd(current root of project)
+-root level: จะมี package\*.json, node_modules, git
+npm start # รอ
+
+<!-- npm start (CRA) หรือ npm run dev
+เรียกใช้ script ของ library (react-script)
+เอาโค้ดใน src มา Bundle (WebPack)
+ไล่ตั้ง index.js และดูว่ามีการ import อะไรบ้าง -->
+
+ไล่หา code ที่ import ทั้งหมด
+code ตัวเองในไฟล์อื่นๆ (incorrect_path, missing file, ลืม export)
+code ใน node_modules (import ผิดชื่อ, ยังไม่ได้ install package)
+asset ต่างๆ VDO,PIC,SVG
+
+<!-- solve import ได้หมด => bundle code เป็น 1 ไฟล์ JSใหญ่
+นำไฟล์ JS แนบ Index.html ให้
+นำ CSS ทั้งหมด แนบ index.html ให้ด้วย
+นำ Asset ต่างๆไปแทรกใน index.html
+ยัดทุกอย่างที่ต้องใช้ ลง dev-server (webpack dev-server)
+เปิด server ให้ (default port:3000) -->
+
+Production
+
+Build Code
+-npm run build
+-bundle code เหมือนกับตอน dev + Optimization(เช่น remove comment, minify == ลด white)
