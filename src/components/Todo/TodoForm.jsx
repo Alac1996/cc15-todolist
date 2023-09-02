@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "../Common/Button/Button";
 import styles from "./TodoForm.module.scss";
+import { nanoid } from "nanoid";
 
 /*
 props = {
@@ -27,7 +28,7 @@ props = {
 
 function TodoForm(props) {
   const [isError, setIsError] = useState(true);
-  const [taskInput, setTaskInput] = useState(" ");
+  const [taskInput, setTaskInput] = useState(props.oldTodo?.task || "");
   // console.log(taskInput);
 
   const handleChangeInput = function (event) {
@@ -37,6 +38,7 @@ function TodoForm(props) {
     // console.log(taskInput);
   };
 
+  // 2 MODE : Add or Edit
   const handleSubmit = function (event) {
     event.preventDefault();
     // console.log("submit");
@@ -50,7 +52,33 @@ function TodoForm(props) {
       setIsError(true);
       return;
     }
-    console.log("submit");
+    if (props.addTodo) props.addTodo(taskInput);
+    else if (props.editTodo && props.oldTodo) {
+      props.editTodo(props.oldTodo.id, { task: taskInput });
+    }
+    // create NewTodo
+    // 1-ส่ง Request ไปหลังบ้านเพื่อ save ลง Database
+    // 2-ทำการอัพเดท State ของ AllTodo === React ทำการ Rerender
+    // data = []
+    // data = [{id:number, task:string, status:boolean,due_date:YYYY-MM-DD}]
+    // oldState = [{o},{o},{o}]
+    // newState = [{n},{o},{o},{o}]
+    // const newTodo = {
+    //   id: nanoid(),
+    //   task: taskInput,
+    //   status: false,
+    //   due_date: "2023-01-09",
+    // };
+    // const newTodoLists = [newTodo,...props.data];
+    // END LOGIC : For CreateTODO
+
+    // Update State
+    // props.setTodo((prev) => [newTodo, ...prev]);
+
+    // send taskInput to addTodo
+    // props.addTodo(taskInput);
+
+    props.setIsOpenForm(false);
   };
 
   const handleCancel = function () {

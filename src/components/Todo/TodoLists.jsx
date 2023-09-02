@@ -1,46 +1,52 @@
-import { useState } from "react";
+// import { useState } from "react";
+import TodoItem from "./TodoItem";
 import styles from "./TodoLists.module.scss";
-import { FaTrashAlt, FaPen } from "react-icons/fa";
-import { HiOutlineCheck } from "react-icons/hi";
-import TodoForm from "./TodoForm";
 
-function TodoLists() {
-  const [IsOpenForm, setIsOpenForm] = useState(false);
-  console.log(IsOpenForm);
+/*
+SCHEMA
+todoObj={id:number, task:string, status:boolean, due_date:string}
 
-  const handleClick = function () {
-    setIsOpenForm(!IsOpenForm);
-  };
+data = Array[] {id:number, task:string, status:boolean, due_date:string}
+หรือ data = Array[] todoObj
 
+dataRender = Array[] <TodoItem task=... done=... date=.... /> 
+*/
+
+function TodoLists(props) {
+  // CRUD = Create-Read-Update-Delete
+
+  // RenderList # 1
+  // const dataRender = data.map((todoObj) => (
+  //   <TodoItem key={todoObj.id} task={todoObj.task} done={todoObj.status} date={todoObj.due_date} />
+  // ));
+
+  // return <ul className={styles.todo__lists}>{dataRender}</ul>;
+
+  // RenderList #2
   return (
-    <>
-      <ul className={styles.todo__lists}>
-        {IsOpenForm ? (
-          <TodoForm textSubmit="Edit Task" setIsOpenForm={setIsOpenForm} />
-        ) : (
-          <li className={styles.todo}>
-            <div
-              className={`${styles.todo__checkbox} ${styles.todo__checkbox__done}`}
-            >
-              <HiOutlineCheck className={styles.todo__checkbox__icon} />
-            </div>
-            <p className={`${styles.todo__task} ${styles.todo__task__done}`}>
-              todo-item 1
-            </p>
-            <span className={styles.todo__date}>30 Aug</span>
-            <div className={styles.todo__action}>
-              <span onClick={handleClick}>
-                <FaPen className={styles.todo__edit} />
-              </span>
-              <span>
-                <FaTrashAlt className={styles.todo__delete} />
-              </span>
-            </div>
-          </li>
-        )}
-      </ul>
-    </>
+    <ul className={styles.todo__lists}>
+      {props.data.map((todoObj) => (
+        <TodoItem
+          key={todoObj.id}
+          id={todoObj.id}
+          task={todoObj.task}
+          done={todoObj.status}
+          date={todoObj.due_date}
+          deleteTodo={props.deleteTodo}
+          editTodo={props.editTodo}
+        />
+      ))}
+    </ul>
   );
+
+  // RenderList #3
+  // return (
+  //   <ul className={styles.todo__lists}>
+  //     {data.map(({ id, task, status, due_date }) => (
+  //       <TodoItem key={id} task={task} done={status} date={due_date} />
+  //     ))}
+  //   </ul>
+  // );
 }
 
 export default TodoLists;

@@ -1,6 +1,6 @@
 import styles from "./TodoCreate.module.scss";
 import { useState } from "react";
-import { FaPlus } from "react-icons/fa";
+// import { FaPlus } from "react-icons/fa";
 import { HiPlus } from "react-icons/hi";
 import TodoForm from "./TodoForm";
 
@@ -46,7 +46,7 @@ const [state,setState] = useState(initialState:any)
 */
 
 // #1 : FC = Function Component (Render)
-function TodoCreate() {
+function TodoCreate(props) {
   // HOOK FN
   const [isOpenForm, setIsOpenForm] = useState(false);
   console.log(isOpenForm);
@@ -65,7 +65,12 @@ function TodoCreate() {
   return (
     <>
       {isOpenForm ? (
-        <TodoForm textSubmit="Add Task" setIsOpenForm={setIsOpenForm} />
+        <TodoForm
+          textSubmit="Add Task"
+          setIsOpenForm={setIsOpenForm}
+          data={props.data}
+          addTodo={props.addTodo}
+        />
       ) : (
         <div className={styles.todo__create} onClick={handleClick}>
           <div className={styles.todo__create__button}>
